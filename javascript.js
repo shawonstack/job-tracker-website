@@ -178,3 +178,24 @@ function renderCards() {
     })
     .join('');
 }
+
+function updateDashboard() {
+  const total = jobs.length;
+  const interview = jobs.filter(j => j.status === 'interview').length;
+  const rejected = jobs.filter(j => j.status === 'rejected').length;
+
+  document.getElementById('count-total').textContent = total;
+  document.getElementById('count-interview').textContent = interview;
+  document.getElementById('count-rejected').textContent = rejected;
+}
+
+function updateTabStyles() {
+  ['all', 'interview', 'rejected'].forEach(tab => {
+    const btn = document.getElementById(`tab-${tab}`);
+    if (tab === currentTab) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}

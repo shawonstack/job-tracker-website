@@ -8,7 +8,6 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
   <style>
     body {
       background-color: #f8fafc;
@@ -129,71 +128,11 @@
       </section>
     </div>
 
-    <body class="text-gray-800">
+    <script src="app.js"></script>
+  </body>
 
-      <div class="max-w-6xl mx-auto p-6 space-y-8">
 
-        <!-- Header -->
-        <header>
-          <h1 class="text-3xl font-bold text-[#002C5C]">Job Application Tracker</h1>
-        </header>
-
-        <!-- Dashboard -->
-        <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="bg-white p-4 rounded shadow text-center hover:bg-primary-content">
-            <p class="text-sm text-gray-500">Total</p>
-            <h2 id="count-total" class="text-2xl font-bold">0</h2>
-          </div>
-          <div class="bg-white p-4 rounded shadow text-center hover:bg-primary-content">
-            <p class="text-sm text-gray-500">Interview</p>
-            <h2 id="count-interview" class="text-2xl font-bold text-green-600">0</h2>
-          </div>
-          <div class="bg-white p-4 rounded shadow text-center hover:bg-primary-content">
-            <p class="text-sm text-gray-500">Rejected</p>
-            <h2 id="count-rejected" class="text-2xl font-bold text-red-500">0</h2>
-          </div>
-        </section>
-
-        <div class="border-b border-gray-200 w-full my-6"></div>
-
-        <!-- Available Jobs -->
-        <section class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold">Available Jobs</h2>
-            <span id="jobs-count-label" class="text-sm text-gray-500 font-semibold">0 jobs</span>
-          </div>
-
-          <!-- Tabs -->
-          <div class="flex gap-2">
-            <button id="tab-all"
-              class="tab-btn active px-4 py-1.5 text-sm font-medium rounded border hover:bg-primary hover:text-white"
-              onclick="switchTab('all')">All</button>
-            <button id="tab-interview"
-              class="tab-btn px-4 py-1.5 text-sm font-medium rounded border text-gray-600 hover:bg-primary hover:text-white"
-              onclick="switchTab('interview')">
-              <i class="fa-solid fa-video"></i> Interview
-            </button>
-            <button id="tab-rejected"
-              class="tab-btn px-4 py-1.5 text-sm font-medium rounded border text-gray-600 hover:bg-primary hover:text-white"
-              onclick="switchTab('rejected')">
-              <i class="fa-solid fa-ban"></i> Rejected
-            </button>
-          </div>
-
-          <!-- Job Cards Container -->
-          <div id="cards-container" class="space-y-4"></div>
-
-          <!-- Empty State -->
-          <div id="empty-state" class="bg-white p-8 text-center rounded shadow hidden">
-            <div class="text-5xl mb-3"><img class="mx-auto" src="./jobs.png" alt=""></div>
-            <h3 class="text-lg font-semibold">No jobs available</h3>
-            <p class="text-sm text-gray-500">Check back soon for new job opportunities.</p>
-          </div>
-
-        </section>
-      </div>
-
-      <script src="./javascript.js"></script>
-    </body>
+  <script src="./javascript.js"></script>
+</body>
 
 </html>

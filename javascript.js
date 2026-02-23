@@ -105,3 +105,76 @@ function getStatusLabel(status) {
   if (status === 'rejected') return 'REJECTED';
   return 'NOT APPLIED';
 }
+
+// ---------- Render ----------
+
+function renderCards() {
+  const container = document.getElementById('cards-container');
+  const emptyState = document.getElementById('empty-state');
+
+  // Filter jobs based on current tab
+
+  const filtered = jobs.filter(job => {
+    if (currentTab === 'all') return true;
+    return job.status === currentTab;
+  });
+
+  // Update "X jobs" label
+
+  const total = jobs.length;
+  const count = jobs.filter(j => j.status !== 'not_applied').length;
+
+  const displayCount = currentTab === 'all' ? count : filtered.length;
+
+  document.getElementById('jobs-count-label').textContent =
+    `${displayCount} of ${total} jobs`;
+
+  // Show empty state if no cards
+  if (filtered.length === 0) {
+    container.innerHTML = '';
+    emptyState.classList.remove('hidden');
+    return;
+  }
+
+  emptyState.classList.add('hidden');
+
+  container.innerHTML = filtered
+    .map(job => {
+      const interviewSelected = job.status === 'interview' ? 'selected' : '';
+      const rejectedSelected = job.status === 'rejected' ? 'selected' : '';
+
+      return `
+      <div class="job-card bg-white p-5 rounded shadow border border-gray-200" id="card-${job.id}">
+        <div class="flex justify-between">
+          <div>
+            <h3 class="font-semibold text-gray-800">${job.company}</h3>
+            <p class="text-sm text-gray-600">${job.role}</p>
+            <p class="text-sm text-gray-500">${job.location} • ${job.type} • ${job.salary}</p>
+          </div>
+          <button
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors"
+            title="Delete"
+            onclick="deleteJob(${job.id})">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+        <div class="mt-3">
+          <span class="status-badge ${getStatusBadgeClass(job.status)}">${getStatusLabel(job.status)}</span>
+          <p class="text-sm text-gray-600 mt-2">${job.description}</p>
+        </div>
+        <div class="mt-4 flex gap-3">
+          <button
+            class="btn-interview ${interviewSelected} border border-green-500 text-green-600 px-3 py-1 rounded hover:bg-green-50"
+            onclick="setStatus(${job.id}, 'interview')">
+            INTERVIEW
+          </button>
+          <button
+            class="btn-rejected ${rejectedSelected} border border-red-500 text-red-600 px-3 py-1 rounded hover:bg-red-50"
+            onclick="setStatus(${job.id}, 'rejected')">
+            REJECTED
+          </button>
+        </div>
+      </div>`;
+    })
+    .join('');
+}

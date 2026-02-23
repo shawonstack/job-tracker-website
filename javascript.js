@@ -88,3 +88,20 @@ const jobs = [
     status: 'not_applied',
   },
 ];
+
+// ---------- State ----------
+let currentTab = 'all';
+
+// ---------- Helpers ----------
+
+function getStatusBadgeClass(status) {
+  if (status === 'interview') return 'badge-interview';
+  if (status === 'rejected') return 'badge-rejected';
+  return 'badge-not-applied';
+}
+
+function getStatusLabel(status) {
+  if (status === 'interview') return 'INTERVIEW';
+  if (status === 'rejected') return 'REJECTED';
+  return 'NOT APPLIED';
+}

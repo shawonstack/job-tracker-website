@@ -199,3 +199,38 @@ function updateTabStyles() {
     }
   });
 }
+
+// ---------- Actions ----------
+
+function setStatus(id, newStatus) {
+  const job = jobs.find(j => j.id === id);
+  if (!job) return;
+
+  // Toggle: clicking the same status button removes the status
+  if (job.status === newStatus) {
+    job.status = 'not_applied';
+  } else {
+    job.status = newStatus;
+  }
+
+  updateDashboard();
+  renderCards();
+}
+
+function deleteJob(id) {
+  const index = jobs.findIndex(j => j.id === id);
+  if (index === -1) return;
+  jobs.splice(index, 1);
+  updateDashboard();
+  renderCards();
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  updateTabStyles();
+  renderCards();
+}
+
+// ---------- Init ----------
+updateDashboard();
+renderCards();
